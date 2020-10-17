@@ -2,19 +2,32 @@
 <template>
   <div id="toolbar">
     <v-container>
-      <v-row style="color: white;width: 75%;
-    margin-left: 12%" align="center" justify="center">
-        <v-col md="8"><h2 style="text-align: left">Comment Pouvons nous vous aider ?</h2></v-col>
-        <v-col md="4" v-on:click="redirectionToSite('https://www.affixe-logiciel.fr/')" style="cursor: pointer; text-align: right">Aller sur Affixe 2.0 <v-icon style="color: white">mdi-launch</v-icon></v-col>
+      <v-row
+        style="color: white; width: 75%; margin-left: 12%"
+        align="center"
+        justify="center"
+      >
+        <v-col md="8"
+          ><h2 style="text-align: left">
+            Comment Pouvons nous vous aider ?
+          </h2></v-col
+        >
+        <v-col
+          md="4"
+          v-on:click="redirectionToSite('https://www.affixe-logiciel.fr/')"
+          style="cursor: pointer; text-align: right"
+          >Aller sur Affixe 2.0
+          <v-icon style="color: white">mdi-launch</v-icon></v-col
+        >
       </v-row>
-      <v-row align="center" justify="center" style="width: 75%;
-    margin-left: 12%">
+      <v-row
+        align="center"
+        justify="center"
+        style="width: 75%; margin-left: 12%"
+      >
         <v-col md="12">
-          <!-- <h2>Comment Pouvons nous vous aider ?</h2> -->
           <v-text-field
             v-model="keyword"
-            
-            
             solo
             label="Chercher des réponses"
             prepend-inner-icon="mdi-magnify"
@@ -27,53 +40,36 @@
 </template>
 
 <script>
-import EventBus from '../plugins/eventbus';
-import * as _ from 'lodash'
+import EventBus from "../plugins/eventbus";
+import * as _ from "lodash";
 export default {
   name: "Toolbar",
   data: () => ({
     keyword: "",
   }),
-  created() {
-  },
+  created() {},
   methods: {
     redirectionToSite(url) {
-        window.open(url, '_blank');
-        // this.$router.push(url)
+      window.open(url, "_blank");
     },
-    
+
+    // Attend au moins que l'utilisateur finnisse de taper
     debounceInput: _.debounce(function (e) {
-
-        console.log(this.$router.history.current.name)
-        console.log(this.$router.history.current.name.indexOf("/search"))
-
-        if(e.length === 0) {
-            this.$router.replace({ path: "/" });
+      if (e.length === 0) {
+        this.$router.replace({ path: "/" });
+      }
+      if (window.location.href.indexOf("search") == -1) {
+        if (e.length > 0) {
+          this.$router.replace({ path: "/search" });
         }
-        if (this.$router.history.current.name.indexOf("search") === -1) {
-            if(e.length > 0) {
+      }
 
-                this.$router.replace({ path: "/search" });
-
-                
-            }
-
-        }  else {
-            console.log("What")
-            }
-        // if(e.length === 0) {
-        //     this.$router.replace({ path: "/" });
-        // }
-
-        setTimeout(() => {
-            console.log("Dans le debounce => ", e)
-            if(e.length > 0) {
-                EventBus.$emit('SEARCH_TEXT', e)
-            }
-        }, 500)
-        
-        
-    }, 500)
+      setTimeout(() => {
+        if (e.length > 0) {
+          EventBus.$emit("SEARCH_TEXT", e);
+        }
+      }, 500);
+    }, 500),
   },
 };
 </script>
@@ -92,9 +88,8 @@ export default {
 }
 
 @media (max-width: 960px) {
-    #toolbar {
-        height: 30vh;
-    }
+  #toolbar {
+    height: 30vh;
+  }
 }
-
 </style>

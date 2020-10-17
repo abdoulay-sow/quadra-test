@@ -7,17 +7,11 @@
             <span @click="gotoCategory()" style="cursor: pointer"
               >Aide en ligne</span
             >
-            <template>
-              /
-              <!-- <v-icon>mdi-chevron-right</v-icon> -->
-            </template>
+            <template> / </template>
           </v-breadcrumbs>
 
           <v-breadcrumbs style="padding-left: 0px">
             <b>Catégorie</b>
-            <!-- <template>
-          <v-icon>mdi-chevron-right</v-icon>
-        </template> -->
           </v-breadcrumbs>
         </div>
       </v-col>
@@ -70,18 +64,14 @@ export default {
         `article/${this.$route.params.slug}`
       );
     }
-
-    console.log("Article => ", this.article);
   },
   methods: {
     gotoCategory() {
-
-        console
-        if(this.$router.history.current.name.indexOf("search") !== -1) {
-            this.$router.replace({path:'/'})
-        } else {
-            this.$router.back();
-        }
+      if (this.$router.history.current.name.indexOf("search") !== -1) {
+        this.$router.replace({ path: "/" });
+      } else {
+        this.$router.back();
+      }
     },
   },
 };
@@ -93,7 +83,6 @@ export default {
   display: block;
   width: 70% !important;
   margin: auto;
-  // margin-top: 50px !important;
 
   .v-image {
     margin: auto;
@@ -108,6 +97,5 @@ export default {
     margin: 0px 10px;
     font-size: 40px;
   }
-
 }
 </style>

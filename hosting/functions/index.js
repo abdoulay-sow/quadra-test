@@ -16,7 +16,7 @@ let cors = {
 
 
 
-
+// En Mode Développement 
 app.all('*', function (req, res, next) {
     let origin = req.headers.origin;
     console.log('Origin => ', origin)
@@ -28,15 +28,12 @@ app.all('*', function (req, res, next) {
 });
 
 
+// Initialise les serves Firebase
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
 
 
-
-app.get('/timestamp', (req, res) => {
-    res.send(`${Date.now()}`)
-})
-
+// Retourne la liste des categories
 app.get('/api/categories', async (req, res) => {
 
     let data = await controllerservices.returnThings('categories', 'array')
@@ -47,6 +44,7 @@ app.get('/api/categories', async (req, res) => {
 
 })
 
+// Retourne une categorie
 app.get('/api/category/:id', async (req, res) => {
 
     let id = req.params.id
@@ -59,6 +57,7 @@ app.get('/api/category/:id', async (req, res) => {
 
 })
 
+// Retourne un article
 app.get('/api/article/:id', async (req, res) => {
 
     let id = req.params.id
@@ -72,6 +71,7 @@ app.get('/api/article/:id', async (req, res) => {
 })
 
 
+// Retournes les articles d'une categorie
 app.get('/api/category-articles/:id', async (req, res) => {
 
     console.log(req.params.id)
@@ -87,6 +87,8 @@ app.get('/api/category-articles/:id', async (req, res) => {
 
 })
 
+
+// Retourne Les resultats de la recherche
 app.get('/api/search/:slug', async (req, res) => {
     let query = req.params.slug
 

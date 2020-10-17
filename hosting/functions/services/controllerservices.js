@@ -2,13 +2,20 @@
 const admin = require('firebase-admin');
 
 
+/* 
+*   Ce fichier nous sert d'ORM
+*   C'est ou l'on a mis les methode qui permettent de 
+*   Communiquer avec la base de donné
+*   Toutes ces méthodes sont générique
+*   Et permettent d'eviter la répétition
+*/
 
+
+
+// Afficher Liste ou Objet
 exports.returnThings = (collectionName, resultType, arg = null) => {
     let dbRef = admin.firestore().collection(collectionName)
-    
-    
 
-    console.log("Db ref => ", dbRef)
 
     if (resultType === 'array') {
         console.log("arg => ", arg)
@@ -39,7 +46,7 @@ exports.returnThings = (collectionName, resultType, arg = null) => {
 
 
         }
-        return dbRef.get().then(snap => {            
+        return dbRef.get().then(snap => {
             let dataArr = []
             snap.forEach(doc => {
                 if (!doc.exists) {
@@ -70,29 +77,30 @@ exports.returnThings = (collectionName, resultType, arg = null) => {
             console.log("Err => ", err)
             return undefined
         })
-    } 
+    }
 
-    
+
 }
 
+// Ajout de Document dans une collection ou sous collection
 exports.addDocument = (collectionName, documentToAdd, arg) => {
     let dbRef = admin.firestore().collection(collectionName)
 
-    if(arg !== null && arg !== undefined) 
-    {
+    if (arg !== null && arg !== undefined) {
         dbRef = dbRef.doc(arg.id).collection(arg.subColection)
     }
 
     return dbRef.add(documentToAdd)
 }
 
+// Suppression de Document dans une collection ou sous collection
 exports.deleteDocument = (collectionName, documentId, arg = null) => {
     let dbRef = admin.firestore().collection(collectionName).doc(documentId)
 
-    if(arg !== null) {
-        if(arg.id && arg.subColection) {
+    if (arg !== null) {
+        if (arg.id && arg.subColection) {
             dbRef = dbRef.collection(arg.subColection).doc(arg.id)
         }
     }
-    return dbRef.delete()    
+    return dbRef.delete()
 }

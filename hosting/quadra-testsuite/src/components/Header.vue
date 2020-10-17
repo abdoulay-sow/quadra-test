@@ -1,3 +1,5 @@
+<!-- Ce Component est affiché en haut de la page -->
+
 <template>
   <v-app-bar app style="background-color: rgb(44, 139, 205)">
     <v-row>
@@ -62,7 +64,6 @@
       </v-col>
     </v-row>
   </v-app-bar>
-  <!-- <v-container>Header</v-container> -->
 </template>
 
 <script>

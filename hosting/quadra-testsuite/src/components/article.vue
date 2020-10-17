@@ -11,19 +11,21 @@
     style="width: 100%; background-color: rgb(242, 247, 249)"
   >
     <v-row>
-      <v-col md="12" class="text-middle-left" style="padding: 20px 65px;">
+      <v-col md="12" class="text-middle-left" style="padding: 20px 65px">
         <span class="text-title">
           <h4>{{ data.nom }}</h4>
         </span>
 
-        <span class="text-description" style="font-size: small;">Mise à jour il y a {{date}}</span>
+        <span class="text-description" style="font-size: small"
+          >Mise à jour il y a {{ date }}</span
+        >
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import * as moment from 'moment'
+import * as moment from "moment";
 export default {
   name: "Article",
   props: ["data"],
@@ -36,24 +38,21 @@ export default {
     moment.locale("fr");
     this.date = moment(this.data.date).fromNow();
 
-    // this.date =  this.data.date
     console.log("Date => ", this.date);
   },
   methods: {
     gotoArticle() {
-
-      if(this.$router.history.current.name.indexOf("search"))
-      {
-          this.$router.replace({
-        path: `/article/${this.data.id}`,
-        query: { article: this.data },
+      if (this.$router.history.current.name.indexOf("search")) {
+        this.$router.replace({
+          path: `/article/${this.data.id}`,
+          query: { article: this.data },
         });
       } else {
-          this.$router.push({
-            path: `/article/${this.data.id}`,
-            query: { article: this.data },
-          });
-    }
+        this.$router.push({
+          path: `/article/${this.data.id}`,
+          query: { article: this.data },
+        });
+      }
     },
   },
 };
@@ -75,13 +74,6 @@ export default {
   }
 }
 .v-breadcrumbs {
-  display: inline-block;
-  /* align-items: center; */
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* flex: 0 1 auto; */
-  /* list-style-type: none; */
-  /* margin: 0; */
-  /* padding: 18px 12px; */
+  display: inline-block;  
 }
 </style>

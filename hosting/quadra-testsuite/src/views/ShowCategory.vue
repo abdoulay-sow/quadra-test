@@ -2,19 +2,16 @@
   <v-container>
     <v-row>
       <v-col md="12">
-        <div style="
-    padding-left: 13%;
-    text-align: left;">
+        <div style="padding-left: 13%; text-align: left">
           <v-breadcrumbs>
-            <span @click="gotoCategory()" style="cursor: pointer">Aide en ligne</span>
-            <template>
-                /              
-            </template>
+            <span @click="gotoCategory()" style="cursor: pointer"
+              >Aide en ligne</span
+            >
+            <template> / </template>
           </v-breadcrumbs>
 
           <v-breadcrumbs style="padding-left: 0px">
             <b>Catégorie</b>
-           
           </v-breadcrumbs>
         </div>
       </v-col>
@@ -22,7 +19,10 @@
     <v-row>
       <v-col md="12">
         <v-card style="padding-bottom: 35px">
-          <p v-if="category !== null && category !== undefined" style="text-align: left">
+          <p
+            v-if="category !== null && category !== undefined"
+            style="text-align: left"
+          >
             <v-row>
               <v-col md="3">
                 <v-img
@@ -35,7 +35,7 @@
               </v-col>
               <v-col md="8">
                 <p class="mb-0">
-                   <b>{{ category.nom }}</b>
+                  <b>{{ category.nom }}</b>
                 </p>
                 <p>{{ category.article_nbr }} dans cette catégorie</p>
               </v-col>
@@ -56,7 +56,7 @@
 
 <script>
 import * as api from "../services/api";
-import Article from "./article";
+import Article from "../components/article";
 export default {
   name: "ShowCategory",
   components: {
@@ -69,32 +69,23 @@ export default {
     };
   },
   async created() {
-    console.log("Component Created");
-    console.log("Rours => ", this.$route);
-
     this.articles = await api.default.getData(
       `category-articles/${this.$route.params.slug}`
     );
     this.category = this.$route.query.category;
 
-    console.log("categorie ", this.category)
-
-    console.log("Category => ", typeof this.category);
-
-    if(typeof this.category === "string" || this.category === undefined) 
-    {
-        this.category = await api.default.getData(
-            `category/${this.$route.params.slug}`
-        )
+    /* En Cas de Reloading de la Page */
+    if (typeof this.category === "string" || this.category === undefined) {
+      this.category = await api.default.getData(
+        `category/${this.$route.params.slug}`
+      );
     }
-
-    console.log("les articles => ", this.articles);
   },
   methods: {
-      gotoCategory() {
-          this.$router.back()
-        }
-  }
+    gotoCategory() {
+      this.$router.back();
+    },
+  },
 };
 </script>
 

@@ -36,11 +36,7 @@ export default {
     };
   },
   async created() {
-    console.log("Component Created");
-
     this.categories = await api.default.getData("categories");
-
-    console.log("les cateforizes => ", this.categories);
   },
 };
 </script>

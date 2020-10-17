@@ -1,14 +1,17 @@
 <template>
   <v-container>
-
     <div v-if="results === null || results === undefined">
-        Recherche En Cours
+      Recherche En Cours
     </div>
-    <div v-if="results !== null && results !== undefined && results.length === 0">
-        Pas de Résultats
+    <div
+      v-if="results !== null && results !== undefined && results.length === 0"
+    >
+      Pas de Résultats
     </div>
-    
-    <v-card v-if="results !== null && results !== undefined && results.length > 0">
+
+    <v-card
+      v-if="results !== null && results !== undefined && results.length > 0"
+    >
       <v-layout row wrap>
         <Article
           v-for="article in results"
@@ -35,12 +38,8 @@ export default {
   },
 
   mounted() {
-    EventBus.$on("SEARCH_TEXT", async (payLoad) => {
-      console.log("Di diote change bi => ", payLoad);
-
+    EventBus.$on("SEARCH_TEXT", async (payLoad) => {        
       this.results = await api.default.getData("search/" + payLoad);
-
-      console.log("Result search => ", this.results);
     });
   },
 };
