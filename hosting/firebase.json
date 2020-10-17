@@ -1,0 +1,26 @@
+{
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "app",
+        "dynamicLinks": true
+      },
+      {
+        "source": "/**",
+        "dynamicLinks": true
+      }
+    ],
+    "public": "quadra-testsuite/dist/",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ]
+  }
+}
