@@ -1,11 +1,8 @@
 import Vue from 'vue';
-import Vuetify, {
-    VCard
-} from 'vuetify/lib';
+import Vuetify from 'vuetify/lib';
 
-Vue.use(Vuetify, {components: {
-    VCard
-}});
+Vue.use(Vuetify);
 
 export default new Vuetify({
+    customVariables: ['~/styles/_variables.scss'],
 });

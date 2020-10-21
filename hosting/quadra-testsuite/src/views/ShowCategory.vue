@@ -1,43 +1,39 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md="12">
-        <div style="padding-left: 13%; text-align: left">
-          <v-breadcrumbs>
+      <v-col md="12" class="pa-0">
+        <div>
+          <v-breadcrumbs class="float-left pa-0">
             <span @click="gotoCategory()" style="cursor: pointer"
               >Aide en ligne</span
             >
             <template> / </template>
           </v-breadcrumbs>
 
-          <v-breadcrumbs style="padding-left: 0px">
+          <v-breadcrumbs class="float-left pa-0">
             <b>Catégorie</b>
           </v-breadcrumbs>
         </div>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col md="12">
-        <v-card style="padding-bottom: 35px">
+    <v-row >
+      <v-col md="12 px-0">
+        <v-card class="mx-0 px-10 pb-5">
           <p
-            v-if="category !== null && category !== undefined"
-            style="text-align: left"
+            v-if="category !== null && category !== undefined"           
           >
             <v-row>
-              <v-col md="3">
-                <v-img
-                  class="mr-0"
-                  max-height="70"
-                  max-width="150"
+              <v-col md="2" class="px-0 mx-0">
+                <v-img                  
+                  class="mx-0"
+                  max-width="60"
                   :src="category.image"
                 >
                 </v-img>
               </v-col>
-              <v-col md="8">
-                <p class="mb-0">
-                  <b>{{ category.nom }}</b>
-                </p>
-                <p>{{ category.article_nbr }} dans cette catégorie</p>
+              <v-col md="10" class="text-left my-auto">
+                <span><b>{{ category.nom }}</b></span><br>
+                <span>{{ category.article_nbr }} dans cette catégorie</span>                
               </v-col>
             </v-row>
           </p>
@@ -74,6 +70,8 @@ export default {
     );
     this.category = this.$route.query.category;
 
+    console.log("La categorie => ", this.category)
+
     /* En Cas de Reloading de la Page */
     if (typeof this.category === "string" || this.category === undefined) {
       this.category = await api.default.getData(
@@ -90,18 +88,11 @@ export default {
 </script>
 
 <style lang="scss">
-.v-card {
-  display: block;
-  width: 70% !important;
-  margin: auto;
-  // margin-top: 50px !important;
-
-  .v-image {
-    margin: auto;
+.container {
+  width: 722px !important;
+  .v-card {
+    width: 100% !important;
   }
 
-  .text-middle-left {
-    text-align: left;
-  }
 }
 </style>

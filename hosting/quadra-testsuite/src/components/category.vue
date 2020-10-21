@@ -5,26 +5,23 @@
 -->
 
 <template>
-  <v-card class="mt-5" @click="goArticles()">
-    <v-row align="center" justify="center">
-      <v-col md="4" class="pd-0">
-        <v-img
-          class="mr-0"
-          max-height="70"
-          max-width="150"
+  <v-card  @click="goArticles()" class="my-5 py-5 px-10" id="categorie" style="width: 722px !important">
+    <v-row>
+      <v-col md="1" class="px-0">
+        <v-img    
+          class=" pa-3"
+                       
           :src="data.image"
         ></v-img>
       </v-col>
-      <v-col md="8" class="text-middle-left">
-        <span class="text-title">
+      <v-col md="11" class="text-left">
+        <span class="category-title">
           <b>{{ data.nom }}</b>
-        </span>
-        <span class="text-description">
+        </span><br />
+        <span class="category-subtitle">
           {{ data.article_nbr }} articles dans cette catégorie </span
-        ><br />
-        <span class="text-description" style="font-size: smaller">
-          Mise à jour il y a {{ date }}
-        </span>
+        >
+        
         <span> </span>
       </v-col>
     </v-row>
@@ -58,17 +55,6 @@ export default {
 </script>
 
 <style lang="scss">
-.v-card {
-  display: block;
-  width: 60% !important;
-  margin: auto;
 
-  .v-image {
-    margin: auto;
-  }
 
-  .text-middle-left {
-    text-align: left;
-  }
-}
 </style>

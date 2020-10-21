@@ -1,28 +1,29 @@
 <template>
   <v-app id="app">
-    
-    <Header/>
+    <Header />
     <v-main style="background-color: rgb(242, 247, 249)">
-      <Toolbar/>
-      <v-container>
-        <router-view/>
+      <Toolbar />
+      <v-container id="main-container" class="px-0">
+        <router-view />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Toolbar from './components/Toolbar'
-import Header from './components/Header'
+import Toolbar from "./components/Toolbar";
+import Header from "./components/Header";
 export default {
   components: {
     Toolbar,
-    Header    
+    Header,
   },
-}
+};
 </script>
 
 <style lang="scss">
+@import "./styles/_variables.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,7 +38,7 @@ export default {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: $primary;
 
     &.router-link-exact-active {
       color: #42b983;
@@ -46,11 +47,39 @@ export default {
 }
 
 .text-title {
-    text-transform: capitalize;
-    display: block !important;
-  }
+  text-transform: capitalize;
+  display: block !important;
+}
 
-  .v-main {
-    padding: 0px !important
-    }
+.v-main {
+  padding: 0px !important;
+}
+
+.category-title {
+  font: normal normal bold 18px/24px Open Sans;
+  letter-spacing: 0px;
+  color: #2c3e50;
+  opacity: 1;
+}
+
+.category-subtitle {
+  font: normal normal normal 14px/19px Open Sans;
+  letter-spacing: 0px;
+  color: #5e738b;
+  opacity: 1;
+}
+
+.article-title {
+  font: normal normal bold 18px/24px Open Sans;
+  letter-spacing: 0px;
+  color: #2c3e50;
+  opacity: 1;
+}
+
+.article-subtitle {
+  font: normal normal normal 14px/19px Open Sans;
+  letter-spacing: 0px;
+  color: #5e738b;
+  opacity: 1;
+}
 </style>

@@ -102,7 +102,7 @@ app.get('/api/search/:slug', async (req, res) => {
 
 
 
-app.get('/api/seed/:categorie_nbr/:article_nbr_for_each_category', async (req, res) => {
+app.get('/api/seed/:categorie_nbr', async (req, res) => {
 
     let categorieNbr = Number.parseInt(req.params.categorie_nbr)
 
@@ -129,11 +129,19 @@ app.get('/api/seed/:categorie_nbr/:article_nbr_for_each_category', async (req, r
 
         for (let i = 0; i < categorieNbr; i++) {
             let articlesNbrForCategories = Math.floor(Math.random() * (10 - 1 + 1)) + 1
+            let image = "https://firebasestorage.googleapis.com/v0/b/quadra-testsuite.appspot.com/o/category%2F%20%20OqCoB4G5bPHXgVMLDy3L%2Fphoto.jpg?alt=media&token=da0d00b5-a8f0-4362-88df-ebc2264a5f64"
+            if(i === 0) {
+                image =  "https://firebasestorage.googleapis.com/v0/b/quadra-testsuite.appspot.com/o/call-center-agent.svg?alt=media&token=e6ba9225-9de1-4691-82b1-18e20680fccf"
+            } else if(i === 1) {
+                image = "https://firebasestorage.googleapis.com/v0/b/quadra-testsuite.appspot.com/o/repaired.svg?alt=media&token=8c6dc031-f4f8-4279-9792-938842afa814"            
+            } else if(i === 2) {
+                image = "https://firebasestorage.googleapis.com/v0/b/quadra-testsuite.appspot.com/o/life-preserver.svg?alt=media&token=a9d5b659-4f6c-4a5e-8b61-55bdcc8b8a9d"
+            }
             let categorieToAdd = {                
                 id: uuid(),
                 nom: "Categorie " + (i + 1),
                 article_nbr: articlesNbrForCategories,
-                image: "https://firebasestorage.googleapis.com/v0/b/quadra-testsuite.appspot.com/o/category%2F%20%20OqCoB4G5bPHXgVMLDy3L%2Fphoto.jpg?alt=media&token=da0d00b5-a8f0-4362-88df-ebc2264a5f64",
+                image: image,
                 date: timestamp
             } 
 

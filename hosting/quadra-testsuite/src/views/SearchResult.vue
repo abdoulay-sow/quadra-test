@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+<v-container>
     <div v-if="results === null || results === undefined">
       Recherche En Cours
     </div>
@@ -8,18 +8,37 @@
     >
       Pas de Résultats
     </div>
+    <div v-if="results !== null && results !== undefined && results.length > 0">
+    <v-row >
+      <v-col md="12" class="pa-0">
+        <div>
+          <v-breadcrumbs class="float-left pa-0">
+            <span @click="gotoCategory()" style="cursor: pointer"
+              >Aide en ligne</span
+            >
+            <template> / </template>
+          </v-breadcrumbs>
 
-    <v-card
-      v-if="results !== null && results !== undefined && results.length > 0"
-    >
-      <v-layout row wrap>
-        <Article
-          v-for="article in results"
-          :key="article.path"
-          :data="article"
-        ></Article>
-      </v-layout>
-    </v-card>
+          <v-breadcrumbs class="float-left pa-0">
+            <b>Catégorie</b>
+          </v-breadcrumbs>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row >
+      <v-col md="12 px-0">
+        <v-card class="mx-0 px-10 pb-5">          
+          <v-layout row wrap>
+            <Article
+              v-for="article in results"
+              :key="article.path"
+              :data="article"
+            ></Article>
+          </v-layout>
+        </v-card>
+      </v-col>
+    </v-row>
+    </div>
   </v-container>
 </template>
 

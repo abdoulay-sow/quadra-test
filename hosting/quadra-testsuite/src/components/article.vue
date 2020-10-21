@@ -7,16 +7,16 @@
 <template>
   <div
     @click="gotoArticle()"
-    class="mt-10 ml-10 mr-10"
+    class="mt-2 mx-0"
     style="width: 100%; background-color: rgb(242, 247, 249)"
   >
     <v-row>
-      <v-col md="12" class="text-middle-left" style="padding: 20px 65px">
-        <span class="text-title">
-          <h4>{{ data.nom }}</h4>
+      <v-col md="12" class="text-left ma-auto px-15">
+        <span class="article-title">
+          <b>{{ data.nom }}</b>
         </span>
-
-        <span class="text-description" style="font-size: small"
+          <br>
+        <span class="article-subtitle" style="font-size: small"
           >Mise à jour il y a {{ date }}</span
         >
       </v-col>

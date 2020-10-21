@@ -1,22 +1,22 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md="12">
-        <div style="padding-left: 13%; text-align: left">
-          <v-breadcrumbs>
+      <v-col md="12" class="pa-0">
+        <div>
+          <v-breadcrumbs class="float-left pa-0">
             <span @click="gotoCategory()" style="cursor: pointer"
               >Aide en ligne</span
             >
             <template> / </template>
           </v-breadcrumbs>
 
-          <v-breadcrumbs style="padding-left: 0px">
+          <v-breadcrumbs class="float-left pa-0">
             <b>Catégorie</b>
           </v-breadcrumbs>
         </div>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="mt-2">
       <v-card
         v-if="article !== null && article !== undefined"
         style="padding-bottom: 5px"
